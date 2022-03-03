@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [data, setData] = useState();
@@ -12,7 +13,7 @@ export default function Home() {
         const response = await axios.get(
           `https://remy-marvel-backend.herokuapp.com/characters?page=${page}`
         );
-
+        console.log(response.data);
         setData(response.data);
 
         setIsLoading(false);
@@ -25,33 +26,68 @@ export default function Home() {
   return isLoading ? (
     <span>En cours de chargement</span>
   ) : (
-    <div>
-      <button
-        style={{ display: page === 1 ? "none" : "inline" }}
-        onClick={() => {
-          setPage(page - 1);
-        }}
-      >
-        page précédente
-      </button>
+    <div className="page">
+      <div className="bt">
+        <button
+          style={{ display: page === 1 ? "none" : "inline" }}
+          onClick={() => {
+            setPage(page - 1);
+          }}
+        >
+          page précédente
+        </button>
 
-      <button
-        style={{
-          display: page === Math.ceil(data.count / 100) ? "none" : "inline",
-        }}
-        onClick={() => {
-          setPage(page + 1);
-        }}
-      >
-        page suivante
-      </button>
-      {data.results.map((character, _id) => {
-        return (
-          <div key={_id}>
-            {character.name} : {character.description}
-          </div>
-        );
-      })}
+        <button
+          style={{
+            display: page === Math.ceil(data.count / 100) ? "none" : "inline",
+          }}
+          onClick={() => {
+            setPage(page + 1);
+          }}
+        >
+          page suivante
+        </button>
+      </div>
+      <div className="container">
+        {data.results.map((character, _id) => {
+          return (
+            <div>
+              <Link to={`/character/${character._id}`}>
+                <div className="thumbnails">
+                  <div key={_id}>
+                    <img
+                      src={`${character.thumbnail.path}.jpg`}
+                      alt="Personnages Marvel"
+                    />
+                    <p>{character.name}</p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          );
+        })}
+        <div className="bt">
+          <button
+            style={{ display: page === 1 ? "none" : "inline" }}
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            page précédente
+          </button>
+
+          <button
+            style={{
+              display: page === Math.ceil(data.count / 100) ? "none" : "inline",
+            }}
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            page suivante
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

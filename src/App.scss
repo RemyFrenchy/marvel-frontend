@@ -1,0 +1,99 @@
+body {
+  background-color: #ee171f;
+}
+
+.header {
+  display: block;
+  width: 1050px;
+  margin: 10px auto 20px auto;
+  position: sticky;
+  top: 0;
+  background-color: #ee171f;
+  .navBar {
+    background-color: #ee171f;
+    width: 1060px;
+    height: 50px;
+
+    display: flex;
+
+    img {
+      max-height: 50px;
+      object-fit: contain;
+    }
+    .linkBar {
+      width: 600px;
+      margin: 0 20px 0 AUTO;
+
+      .link {
+        width: 150px;
+        height: 50px;
+        color: white;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-size: 20px;
+        margin: 0 10px 0 10px;
+        line-height: 50px;
+        text-decoration: none;
+      }
+    }
+  }
+
+  input {
+    background-color: black;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+
+    height: 50px;
+    width: 1050px;
+    margin: 20px 0 10px 0;
+    border-radius: 0 0 0 15px;
+    border: hidden;
+  }
+}
+.page {
+  margin: auto;
+  width: 1050px;
+  background-color: #ee171f;
+}
+.container {
+  width: 1050px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ee171f;
+
+  .bt {
+    display: flex;
+  }
+  .thumbnails {
+    box-sizing: border-box;
+    border-radius: 0 0 0 30px;
+    background-color: black;
+    width: 200px;
+    height: 320px;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+    line-height: 30px;
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+
+    color: white;
+    cursor: pointer;
+
+    img {
+      width: 200px;
+      height: 220px;
+      object-fit: cover;
+      box-sizing: border-box;
+    }
+    img:hover {
+      width: 200px;
+      height: 220px;
+      object-fit: none;
+    }
+  }
+}

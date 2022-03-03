@@ -46,9 +46,11 @@ export default function Comics() {
         page suivante
       </button>
       {data.results.map((comic, _id) => {
+        const image = `${comic.thumbnail.path}.jpg`;
         return (
           <div key={_id}>
-            {comic.title} : {comic.description}
+            {comic.title}
+            <img className="img" src={image} alt="Comics Marvel" />
           </div>
         );
       })}
