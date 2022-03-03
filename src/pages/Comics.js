@@ -25,35 +25,66 @@ export default function Comics() {
   return isLoading ? (
     <span>En cours de chargement</span>
   ) : (
-    <div>
-      <button
-        style={{ display: page === 1 ? "none" : "inline" }}
-        onClick={() => {
-          setPage(page - 1);
-        }}
-      >
-        page précédente
-      </button>
+    <div className="page">
+      <div className="bt">
+        <button
+          style={{ display: page === 1 ? "none" : "inline" }}
+          onClick={() => {
+            setPage(page - 1);
+          }}
+        >
+          page précédente
+        </button>
 
-      <button
-        style={{
-          display: page === Math.ceil(data.count / 100) ? "none" : "inline",
-        }}
-        onClick={() => {
-          setPage(page + 1);
-        }}
-      >
-        page suivante
-      </button>
-      {data.results.map((comic, _id) => {
-        const image = `${comic.thumbnail.path}.jpg`;
-        return (
-          <div key={_id}>
-            {comic.title}
-            <img className="img" src={image} alt="Comics Marvel" />
-          </div>
-        );
-      })}
+        <button
+          style={{
+            display: page === Math.ceil(data.count / 100) ? "none" : "inline",
+          }}
+          onClick={() => {
+            setPage(page + 1);
+          }}
+        >
+          page suivante
+        </button>
+      </div>
+      <div className="container">
+        {data.results.map((comic, _id) => {
+          return (
+            <div className="comicsThumbnails">
+              <div key={_id}>
+                <img
+                  className="comicsImg"
+                  src={`${comic.thumbnail.path}.jpg`}
+                  alt="Comics Marvel"
+                />
+                {comic.title}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div />
+      <div className="bt">
+        <button
+          style={{ display: page === 1 ? "none" : "inline" }}
+          onClick={() => {
+            setPage(page - 1);
+          }}
+        >
+          page précédente
+        </button>
+
+        <button
+          style={{
+            display: page === Math.ceil(data.count / 100) ? "none" : "inline",
+          }}
+          onClick={() => {
+            setPage(page + 1);
+          }}
+        >
+          page suivante
+        </button>
+      </div>
     </div>
   );
 }

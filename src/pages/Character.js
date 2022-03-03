@@ -13,25 +13,48 @@ export default function Character() {
       const response = await axios.get(
         `https://remy-marvel-backend.herokuapp.com/character/${id}`
       );
-      console.log(response.data.comics);
+
       setData(response.data);
       setIsLoading(false);
     };
     fechData();
   });
-  //   const image = `${data.thumbnail.path}.jpg`;
+
   return isLoading ? (
     <div>En cours de chargement...</div>
   ) : (
-    <div className="character">
-      <h2>{data.name}</h2>
-      <img src={`${data.thumbnail.path}.jpg`} alt={data.name} />
-      <h3>{data.description}</h3>
-      <span>
-        {data.comics.map((comic) => {
-          return <p>{comic}</p>;
-        })}
-      </span>
+    <div className="page">
+      <div className="charactersThumbnails">
+        <div className="descriptionPosition">
+          <div>
+            <h1>{data.name}</h1>
+            <img
+              src={`${data.thumbnail.path}.jpg`}
+              alt={data.name}
+              className="characterDetImg"
+            />
+          </div>
+
+          <p>{data.description}</p>
+        </div>
+
+        <div className="comicsDetByCharacter">
+          {data.comics.map((characterComics) => {
+            return (
+              <div className="comicsByCharacterThumbnails">
+                <div key={characterComics._id} className="comic_link">
+                  <img
+                    className="comicsByCharacterImg"
+                    src={`${characterComics.thumbnail.path}.jpg`}
+                    alt={characterComics.title}
+                  />
+                  <h3>{characterComics.title}</h3>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
