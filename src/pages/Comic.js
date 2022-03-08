@@ -12,7 +12,7 @@ export default function Comic() {
       const response = await axios.get(
         `https://remy-marvel-backend.herokuapp.com/comic/${id}`
       );
-      console.log(response.data);
+
       setData(response.data);
       setIsLoading(false);
     };
