@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Comics() {
   const [data, setData] = useState();
@@ -50,40 +51,44 @@ export default function Comics() {
       <div className="container">
         {data.results.map((comic, _id) => {
           return (
-            <div className="comicsThumbnails">
-              <div key={_id}>
-                <img
-                  className="comicsImg"
-                  src={`${comic.thumbnail.path}.jpg`}
-                  alt="Comics Marvel"
-                />
-                {comic.title}
-              </div>
+            <div>
+              <Link to={`/comic/${comic._id}`}>
+                <div className="comicsThumbnails">
+                  <div key={_id}>
+                    <img
+                      className="comicsImg"
+                      src={`${comic.thumbnail.path}.jpg`}
+                      alt="Comics Marvel"
+                    />
+                    <p>{comic.title}</p>
+                  </div>
+                </div>
+              </Link>
             </div>
           );
         })}
-      </div>
-      <div />
-      <div className="bt">
-        <button
-          style={{ display: page === 1 ? "none" : "inline" }}
-          onClick={() => {
-            setPage(page - 1);
-          }}
-        >
-          page précédente
-        </button>
 
-        <button
-          style={{
-            display: page === Math.ceil(data.count / 100) ? "none" : "inline",
-          }}
-          onClick={() => {
-            setPage(page + 1);
-          }}
-        >
-          page suivante
-        </button>
+        <div className="bt">
+          <button
+            style={{ display: page === 1 ? "none" : "inline" }}
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            page précédente
+          </button>
+
+          <button
+            style={{
+              display: page === Math.ceil(data.count / 100) ? "none" : "inline",
+            }}
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            page suivante
+          </button>
+        </div>
       </div>
     </div>
   );

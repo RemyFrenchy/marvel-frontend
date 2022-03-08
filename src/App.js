@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Comics from "./pages/Comics";
 import Favorites from "./pages/Favorites";
 import Character from "./pages/Character";
+import Comic from "./pages/Comic";
 import { useState } from "react";
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
             path="/comics"
             element={<Comics search={search} setSearch={setSearch} />}
           />
+
+          <Route path="/comic/:id" element={<Comic />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </Router>
