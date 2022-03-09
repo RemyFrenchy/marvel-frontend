@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function Comics() {
+export default function Comics({ search, setSearch, setMenu }) {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -11,10 +11,11 @@ export default function Comics() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://remy-marvel-backend.herokuapp.com/comics?page=${page}`
+          `https://remy-marvel-backend.herokuapp.com/comics?page=${page}&title=${search}`
         );
 
         setData(response.data);
+        setMenu("comics");
 
         setIsLoading(false);
       } catch (error) {
@@ -22,7 +23,7 @@ export default function Comics() {
       }
     };
     fetchData();
-  }, [page]);
+  }, [page, search]);
   return isLoading ? (
     <span>En cours de chargement</span>
   ) : (

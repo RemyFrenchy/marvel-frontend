@@ -1,7 +1,7 @@
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 
-export default function Header(search, setSearch) {
+export default function Header({ search, setSearch, menu, SetMenu }) {
   return (
     <div className="header">
       <nav className="navBar">
@@ -18,7 +18,19 @@ export default function Header(search, setSearch) {
           </Link>
         </div>
       </nav>
-      <input type="search" placeholder="rechercher un personnage" />
+      <input
+        type="search"
+        placeholder={
+          menu === "characters"
+            ? "Rechercher un personnage"
+            : "Rechercher un comics"
+        }
+        onChange={(event) => {
+          const value = event.target.value;
+          setSearch(value);
+        }}
+        value={search}
+      />
     </div>
   );
 }

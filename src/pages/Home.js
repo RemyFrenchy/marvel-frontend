@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function Home() {
+export default function Home({ search, setSearch, menu, setMenu }) {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -11,10 +11,11 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://remy-marvel-backend.herokuapp.com/characters?page=${page}`
+          `https://remy-marvel-backend.herokuapp.com/characters?page=${page}&name=${search}`
         );
         console.log(response.data);
         setData(response.data);
+        setMenu("characters");
 
         setIsLoading(false);
       } catch (error) {
@@ -22,7 +23,7 @@ export default function Home() {
       }
     };
     fetchData();
-  }, [page]);
+  }, [page, search]);
   return isLoading ? (
     <span>En cours de chargement</span>
   ) : (
