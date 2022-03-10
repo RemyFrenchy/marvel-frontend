@@ -15,7 +15,6 @@ export default function Comics({ search, setSearch, setMenu }) {
         );
 
         setData(response.data);
-        setMenu("comics");
 
         setIsLoading(false);
       } catch (error) {
@@ -23,6 +22,7 @@ export default function Comics({ search, setSearch, setMenu }) {
       }
     };
     fetchData();
+    setMenu("comics");
   }, [page, search, setMenu]);
   return isLoading ? (
     <span>En cours de chargement</span>
