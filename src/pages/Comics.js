@@ -53,7 +53,7 @@ export default function Comics({ search, setSearch, setMenu }) {
         {data.results.map((comic, _id) => {
           return (
             <div>
-              <Link to={`/comic/${comic._id}`}>
+              <Link key={_id} to={`/comic/${comic._id}`}>
                 <div className="comicsThumbnails">
                   <div key={_id}>
                     <img

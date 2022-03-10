@@ -15,7 +15,6 @@ export default function Home({ search, setSearch, menu, setMenu }) {
         );
         console.log(response.data);
         setData(response.data);
-        setMenu("characters");
 
         setIsLoading(false);
       } catch (error) {
@@ -23,7 +22,8 @@ export default function Home({ search, setSearch, menu, setMenu }) {
       }
     };
     fetchData();
-  }, [page, search]);
+    setMenu("characters");
+  }, [page, search, setMenu]);
   return isLoading ? (
     <span>En cours de chargement</span>
   ) : (
@@ -53,7 +53,7 @@ export default function Home({ search, setSearch, menu, setMenu }) {
         {data.results.map((character, _id) => {
           return (
             <div>
-              <Link to={`/character/${character._id}`}>
+              <Link key={_id} to={`/character/${character._id}`}>
                 <div className="thumbnails">
                   <div key={_id}>
                     <img
