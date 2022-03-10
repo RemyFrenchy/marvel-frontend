@@ -23,7 +23,7 @@ export default function Comics({ search, setSearch, setMenu }) {
       }
     };
     fetchData();
-  }, [page, search]);
+  }, [page, search, setMenu]);
   return isLoading ? (
     <span>En cours de chargement</span>
   ) : (
